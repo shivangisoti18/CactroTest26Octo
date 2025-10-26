@@ -1,0 +1,132 @@
+// Color Palette
+$primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+$secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+$accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+
+$primary-color: #667eea;
+$secondary-color: #764ba2;
+$accent-color: #f093fb;
+$success-color: #43e97b;
+$warning-color: #feca57;
+
+// Dark Theme Colors
+$bg-primary: #0a0a14;
+$bg-secondary: #1a1a2e;
+$bg-card: rgba(255, 255, 255, 0.05);
+$bg-hover: rgba(255, 255, 255, 0.08);
+
+$text-primary: #ffffff;
+$text-secondary: rgba(255, 255, 255, 0.9);
+$text-muted: rgba(255, 255, 255, 0.7);
+$text-disabled: rgba(255, 255, 255, 0.5);
+
+// Light Theme Colors
+$bg-primary-light: #f5f7fa;
+$bg-secondary-light: #e8ebf0;
+$bg-card-light: rgba(255, 255, 255, 0.9);
+$bg-hover-light: rgba(0, 0, 0, 0.05);
+
+$text-primary-light: #1a202c;
+$text-secondary-light: rgba(0, 0, 0, 0.8);
+$text-muted-light: rgba(0, 0, 0, 0.6);
+$text-disabled-light: rgba(0, 0, 0, 0.4);
+
+// Border & Shadow
+$border-color: rgba(255, 255, 255, 0.1);
+$border-hover: rgba(102, 126, 234, 0.5);
+$shadow-sm: 0 4px 15px rgba(0, 0, 0, 0.2);
+$shadow-md: 0 10px 30px rgba(102, 126, 234, 0.3);
+$shadow-lg: 0 15px 40px rgba(102, 126, 234, 0.4);
+
+// Typography Scale - Professional Sizes
+$font-size-xs: 0.75rem;      // 12px
+$font-size-sm: 0.875rem;     // 14px
+$font-size-base: 1rem;       // 16px
+$font-size-md: 1.125rem;     // 18px
+$font-size-lg: 1.25rem;      // 20px
+$font-size-xl: 1.5rem;       // 24px
+$font-size-2xl: 1.875rem;    // 30px
+$font-size-3xl: 2.25rem;     // 36px
+$font-size-4xl: 3rem;        // 48px
+$font-size-5xl: 3.75rem;     // 60px
+
+// Spacing
+$spacing-xs: 0.5rem;
+$spacing-sm: 1rem;
+$spacing-md: 1.5rem;
+$spacing-lg: 2rem;
+$spacing-xl: 3rem;
+$spacing-2xl: 4rem;
+
+// Border Radius
+$radius-sm: 10px;
+$radius-md: 15px;
+$radius-lg: 20px;
+$radius-xl: 30px;
+$radius-full: 50px;
+
+// Transitions
+$transition-fast: 0.2s ease;
+$transition-base: 0.3s ease;
+$transition-slow: 0.5s ease;
+
+// Breakpoints
+$breakpoint-mobile: 480px;
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1024px;
+$breakpoint-wide: 1400px;
+
+// Z-index layers
+$z-index-navbar: 1000;
+$z-index-modal: 2000;
+$z-index-tooltip: 3000;
+
+// Mixins
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin card {
+  background: $bg-card;
+  backdrop-filter: blur(10px);
+  border-radius: $radius-lg;
+  border: 1px solid $border-color;
+  padding: $spacing-lg;
+}
+
+@mixin hover-lift {
+  transition: transform $transition-base, box-shadow $transition-base;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: $shadow-md;
+  }
+}
+
+@mixin gradient-text {
+  background: $primary-gradient;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@mixin responsive($breakpoint) {
+  @if $breakpoint == mobile {
+    @media (max-width: $breakpoint-mobile) { @content; }
+  } @else if $breakpoint == tablet {
+    @media (max-width: $breakpoint-tablet) { @content; }
+  } @else if $breakpoint == desktop {
+    @media (max-width: $breakpoint-desktop) { @content; }
+  } @else if $breakpoint == wide {
+    @media (min-width: $breakpoint-wide) { @content; }
+  }
+}
+

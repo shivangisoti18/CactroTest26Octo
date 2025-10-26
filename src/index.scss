@@ -1,0 +1,215 @@
+@use './styles/variables' as *;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  font-weight: 400;
+  
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  font-feature-settings: 'cv11', 'ss01';
+  font-variation-settings: 'opsz' 32;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-size: 16px;
+  transition: background-color $transition-base, color $transition-base;
+}
+
+// Dark Theme (default)
+body[data-theme="dark"] {
+  color-scheme: dark;
+  color: $text-primary;
+  background-color: $bg-primary;
+
+  ::-webkit-scrollbar-track {
+    background: $bg-primary;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px; /* Offset for fixed navbar */
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+
+::-webkit-scrollbar-thumb {
+  background: $primary-gradient;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+}
+
+// Light Theme
+body[data-theme="light"] {
+  color-scheme: light;
+  color: $text-primary-light;
+  background-color: $bg-primary-light;
+
+  ::-webkit-scrollbar-track {
+    background: $bg-primary-light;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: $primary-gradient;
+    
+    &:hover {
+      background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+    }
+  }
+
+  ::selection {
+    background: rgba(102, 126, 234, 0.2);
+    color: $text-primary-light;
+  }
+
+  ::-moz-selection {
+    background: rgba(102, 126, 234, 0.2);
+    color: $text-primary-light;
+  }
+
+  a {
+    color: $primary-color;
+    
+    &:hover {
+      color: $secondary-color;
+    }
+  }
+}
+
+/* Selection */
+::selection {
+  background: rgba(102, 126, 234, 0.3);
+  color: $text-primary;
+}
+
+::-moz-selection {
+  background: rgba(102, 126, 234, 0.3);
+  color: $text-primary;
+}
+
+/* Link styles */
+a {
+  font-weight: 500;
+  color: $primary-color;
+  text-decoration: inherit;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $secondary-color;
+  }
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  line-height: 1.2;
+  margin: 0;
+}
+
+h1 { font-size: 3rem; }
+h2 { font-size: 2.25rem; }
+h3 { font-size: 1.875rem; }
+h4 { font-size: 1.5rem; }
+h5 { font-size: 1.25rem; }
+h6 { font-size: 1rem; }
+
+/* Paragraphs */
+p {
+  margin: 0;
+}
+
+/* Buttons reset */
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* Input reset */
+input,
+textarea {
+  font-family: inherit;
+}
+
+/* Image optimization */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Remove default list styles */
+ul, ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* App root */
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Loading animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+/* Utility classes */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 $spacing-lg;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-gradient {
+  @include gradient-text;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+

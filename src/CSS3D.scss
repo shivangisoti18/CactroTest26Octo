@@ -1,0 +1,289 @@
+@use './styles/variables' as *;
+
+// CSS 3D Sphere Animation
+.css3d-sphere {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  box-shadow: 
+    0 0 60px rgba(102, 126, 234, 0.6),
+    inset 0 0 60px rgba(255, 255, 255, 0.2);
+  animation: float 6s ease-in-out infinite, rotate3d 20s linear infinite;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 20px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.8), transparent);
+    animation: shimmer 3s ease-in-out infinite;
+  }
+  
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: linear-gradient(45deg, 
+      transparent 30%,
+      rgba(255,255,255,0.1) 50%,
+      transparent 70%);
+    animation: rotate 4s linear infinite;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(-50%, -50%) translateY(0px); }
+  50% { transform: translate(-50%, -50%) translateY(-30px); }
+}
+
+@keyframes rotate3d {
+  0% { transform: translate(-50%, -50%) rotateY(0deg) rotateX(0deg); }
+  100% { transform: translate(-50%, -50%) rotateY(360deg) rotateX(360deg); }
+}
+
+@keyframes shimmer {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+// Stars background
+.stars {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(2px 2px at 20% 30%, white, transparent),
+    radial-gradient(2px 2px at 60% 70%, white, transparent),
+    radial-gradient(1px 1px at 50% 50%, white, transparent),
+    radial-gradient(1px 1px at 80% 10%, white, transparent),
+    radial-gradient(2px 2px at 90% 60%, white, transparent),
+    radial-gradient(1px 1px at 33% 85%, white, transparent);
+  background-size: 200% 200%;
+  animation: twinkle 8s ease-in-out infinite;
+  opacity: 0.6;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+// CSS 3D Cubes
+.css3d-cubes {
+  position: relative;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4rem;
+  perspective: 1000px;
+  margin-bottom: 3rem;
+  
+  @include responsive(tablet) {
+    height: 300px;
+    gap: 2rem;
+  }
+}
+
+.cube {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: rotateCube 10s infinite linear;
+  
+  &:nth-child(2) { animation-delay: -2s; }
+  &:nth-child(3) { animation-delay: -4s; }
+  &:nth-child(4) { animation-delay: -6s; }
+  &:nth-child(5) { animation-delay: -8s; }
+  &:nth-child(6) { animation-delay: -10s; }
+  
+  @include responsive(tablet) {
+    width: 70px;
+    height: 70px;
+    display: none;
+    
+    &:nth-child(1),
+    &:nth-child(2),
+    &:nth-child(3) {
+      display: block;
+    }
+  }
+}
+
+.cube-face {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border: 2px solid rgba(102, 126, 234, 0.3);
+  background: rgba(102, 126, 234, 0.1);
+  backdrop-filter: blur(5px);
+  
+  @include responsive(tablet) {
+    width: 70px;
+    height: 70px;
+  }
+  
+  &.front  { transform: rotateY(0deg) translateZ(50px); }
+  &.back   { transform: rotateY(180deg) translateZ(50px); }
+  &.right  { transform: rotateY(90deg) translateZ(50px); }
+  &.left   { transform: rotateY(-90deg) translateZ(50px); }
+  &.top    { transform: rotateX(90deg) translateZ(50px); }
+  &.bottom { transform: rotateX(-90deg) translateZ(50px); }
+}
+
+@keyframes rotateCube {
+  0% { transform: rotateX(0deg) rotateY(0deg); }
+  100% { transform: rotateX(360deg) rotateY(360deg); }
+}
+
+// 3D Card Effect
+.card-3d {
+  transition: all 0.3s ease;
+  transform-style: preserve-3d;
+  
+  &:hover {
+    transform: translateY(-10px) rotateX(5deg);
+    box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+  }
+}
+
+// Additional styles
+.section {
+  min-height: 100vh;
+  padding: 6rem 2rem;
+  
+  &:nth-child(odd) {
+    background: linear-gradient(180deg, $bg-primary 0%, $bg-secondary 100%);
+  }
+  
+  &:nth-child(even) {
+    background: linear-gradient(180deg, $bg-secondary 0%, $bg-primary 100%);
+  }
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+  
+  .section-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    @include gradient-text;
+    margin-bottom: 1rem;
+  }
+  
+  .title-underline {
+    width: 100px;
+    height: 4px;
+    background: $primary-gradient;
+    margin: 0 auto;
+    border-radius: 2px;
+  }
+  
+  .section-subtitle {
+    color: $text-muted;
+    font-size: 1.1rem;
+    margin-top: 1rem;
+  }
+}
+
+// Responsive Grid
+.about-grid,
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  
+  @include responsive(tablet) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Common Card Styles
+.profile-card,
+.bio-card,
+.skill-category,
+.project-card,
+.contact-card,
+.timeline-content,
+.contact-form {
+  @include card;
+  color: $text-primary;
+}
+
+// Buttons
+.btn-primary,
+.btn-secondary,
+.btn-outline,
+.btn-gradient,
+.btn-gradient-full,
+.download-cv {
+  padding: 0.75rem 1.5rem;
+  border-radius: $radius-full;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all $transition-base;
+  font-size: 1rem;
+}
+
+.btn-primary,
+.btn-gradient,
+.btn-gradient-full,
+.download-cv {
+  background: $primary-gradient;
+  border: none;
+  color: white;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  
+  &:hover {
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+    transform: translateY(-2px);
+  }
+}
+
+.btn-secondary,
+.btn-outline {
+  background: transparent;
+  border: 2px solid $primary-color;
+  color: white;
+  
+  &:hover {
+    background: rgba(102, 126, 234, 0.1);
+  }
+}
+
+.btn-gradient-full {
+  width: 100%;
+  padding: 1rem 2rem;
+}
+

@@ -23,3 +23,17 @@ dist-ssr
 *.sln
 *.sw?
 
+# Environment variables
+.env
+.env.local
+.env.production.local
+.env.development.local
+
+# Build files
+build
+coverage
+.cache
+
+# OS files
+Thumbs.db
+.DS_Store

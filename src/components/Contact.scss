@@ -1,0 +1,214 @@
+@use '../styles/variables' as *;
+
+.contact-section {
+  min-height: 100vh;
+  padding: 8rem 2rem 4rem;
+  background: linear-gradient(180deg, $bg-primary 0%, $bg-secondary 100%);
+  position: relative;
+  scroll-margin-top: 80px;
+
+  .contact-container {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: $spacing-2xl;
+
+    .section-title {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      @include gradient-text;
+      margin-bottom: $spacing-sm;
+    }
+
+    .title-underline {
+      width: 100px;
+      height: 4px;
+      background: $primary-gradient;
+      margin: 0 auto;
+      border-radius: 2px;
+      margin-bottom: $spacing-md;
+    }
+
+    .section-subtitle {
+      color: $text-muted;
+      font-size: 1.1rem;
+    }
+  }
+
+  .contact-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-xl;
+    align-items: start;
+
+    @include responsive(desktop) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-lg;
+
+    .contact-3d {
+      height: 300px;
+      @include card;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .info-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: $spacing-md;
+
+      .info-card {
+        @include card;
+        text-align: center;
+        transition: all $transition-base;
+        cursor: pointer;
+
+        &:hover {
+          border-color: $border-hover;
+          box-shadow: $shadow-md;
+        }
+
+        .info-icon {
+          font-size: 2.5rem;
+          display: block;
+          margin-bottom: $spacing-sm;
+        }
+
+        h3 {
+          color: $text-primary;
+          font-size: 1.1rem;
+          margin-bottom: $spacing-xs;
+        }
+
+        a, p {
+          color: $text-muted;
+          text-decoration: none;
+          font-size: 0.9rem;
+          transition: color $transition-fast;
+
+          &:hover {
+            color: $primary-color;
+          }
+        }
+      }
+    }
+
+    .social-links {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: $spacing-sm;
+
+      @include responsive(tablet) {
+        grid-template-columns: 1fr;
+      }
+
+      .social-button {
+        @include card;
+        text-align: center;
+        text-decoration: none;
+        color: $text-primary;
+        font-weight: 600;
+        padding: $spacing-md;
+        transition: all $transition-base;
+        background: rgba(255, 255, 255, 0.05);
+
+        &:hover {
+          background: $primary-gradient;
+          border-color: transparent;
+          box-shadow: $shadow-md;
+        }
+      }
+    }
+  }
+
+  .contact-form {
+    @include card;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: $spacing-xs;
+
+      label {
+        color: $text-secondary;
+        font-weight: 600;
+        font-size: 0.95rem;
+      }
+
+      input,
+      textarea {
+        background: rgba(0, 0, 0, 0.2);
+        border: 1px solid $border-color;
+        border-radius: $radius-sm;
+        padding: $spacing-sm;
+        color: $text-primary;
+        font-size: 1rem;
+        font-family: inherit;
+        transition: all $transition-base;
+
+        &:focus {
+          outline: none;
+          border-color: $primary-color;
+          box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+        }
+
+        &::placeholder {
+          color: $text-disabled;
+        }
+      }
+
+      textarea {
+        resize: vertical;
+        min-height: 120px;
+      }
+    }
+
+    .submit-button {
+      background: $primary-gradient;
+      border: none;
+      color: white;
+      padding: $spacing-md $spacing-lg;
+      border-radius: $radius-sm;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: $shadow-sm;
+      transition: all $transition-base;
+      margin-top: $spacing-sm;
+
+      &:hover:not(:disabled) {
+        box-shadow: $shadow-md;
+      }
+
+      &:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  .footer {
+    text-align: center;
+    padding: $spacing-xl 0 $spacing-lg;
+    margin-top: $spacing-2xl;
+    border-top: 1px solid $border-color;
+
+    p {
+      color: $text-muted;
+      font-size: 0.9rem;
+    }
+  }
+}
+
